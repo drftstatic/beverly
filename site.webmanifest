@@ -1,0 +1,28 @@
+{
+  "name": "The Beverly Institute of Bitter Refreshment",
+  "short_name": "Beverly",
+  "description": "An unofficial, overcommitted fan site for Beverly, the bitter Italian soda Americans were not emotionally prepared to receive.",
+  "start_url": "/beverly/",
+  "scope": "/beverly/",
+  "display": "standalone",
+  "background_color": "#fbf5e8",
+  "theme_color": "#651512",
+  "icons": [
+    {
+      "src": "assets/icons/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icons/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icons/maskable-icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

@@ -22,9 +22,6 @@
             <small>Bitter Refreshment Division</small>
           </span>
         </a>
-        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
-          Menu
-        </button>
         <nav id="site-nav" class="site-nav" aria-label="Primary navigation">
           ${pages
             .map(
@@ -33,6 +30,17 @@
             )
             .join("")}
         </nav>
+        <div class="header-controls">
+          <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+            Menu
+          </button>
+          <button class="share-button" type="button" aria-label="Share this Beverly page" title="Share this Beverly page" data-share-button>
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7a3.2 3.2 0 0 0 0-1.39l7.05-4.11A2.98 2.98 0 1 0 15 5c0 .24.03.47.08.69L8.03 9.8a3 3 0 1 0 0 4.4l7.12 4.16c-.04.18-.06.38-.06.58a2.91 2.91 0 1 0 2.91-2.86Z"/>
+            </svg>
+          </button>
+          <span class="share-feedback" data-share-feedback role="status" aria-live="polite"></span>
+        </div>
       </header>
     `;
   }
@@ -59,6 +67,67 @@
     navToggle.addEventListener("click", () => {
       const isOpen = nav.classList.toggle("is-open");
       navToggle.setAttribute("aria-expanded", String(isOpen));
+    });
+  }
+
+  const shareButton = document.querySelector("[data-share-button]");
+  if (shareButton) {
+    const shareFeedback = document.querySelector("[data-share-feedback]");
+    const setFeedback = (message) => {
+      if (!shareFeedback) return;
+      shareFeedback.textContent = message;
+      shareFeedback.classList.add("is-visible");
+      window.setTimeout(() => shareFeedback.classList.remove("is-visible"), 2200);
+    };
+    const copyLink = async (url) => {
+      if (navigator.clipboard?.writeText) {
+        try {
+          await navigator.clipboard.writeText(url);
+          return true;
+        } catch (error) {
+          // Fall through to the older selection-based copy path.
+        }
+      }
+
+      const field = document.createElement("textarea");
+      field.value = url;
+      field.setAttribute("readonly", "");
+      field.style.position = "fixed";
+      field.style.opacity = "0";
+      document.body.appendChild(field);
+      field.select();
+      let copied = false;
+      try {
+        copied = document.execCommand("copy");
+      } catch (error) {
+        copied = false;
+      }
+      field.remove();
+      return copied;
+    };
+
+    shareButton.addEventListener("click", async () => {
+      const canonical = document.querySelector('link[rel="canonical"]')?.href || window.location.href;
+      const title = document.querySelector('meta[property="og:title"]')?.content || document.title;
+      const text = document.querySelector('meta[property="og:description"]')?.content || "The tiny cup has the floor.";
+
+      try {
+        if (navigator.share) {
+          await navigator.share({ title, text, url: canonical });
+          setFeedback("Shared with ceremony");
+        } else if (await copyLink(canonical)) {
+          setFeedback("Link copied");
+        } else {
+          setFeedback("Copy from address bar");
+        }
+      } catch (error) {
+        if (error?.name === "AbortError") return;
+        if (await copyLink(canonical)) {
+          setFeedback("Link copied");
+        } else {
+          setFeedback("Copy from address bar");
+        }
+      }
     });
   }
 

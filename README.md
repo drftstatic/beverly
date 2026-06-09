@@ -4,10 +4,13 @@ An unofficial, satirical fan site for Beverly, the bitter Italian aperitif soda
 that Americans mostly encounter in tiny tasting cups and unforgettable facial
 expressions.
 
+Live site: https://drftstatic.github.io/beverly/
+
 ## What is here?
 
 - A static multi-page HTML/CSS/JS site
 - Original generated artwork saved in `assets/images`
+- Generated favicon, home-screen, manifest, and social preview assets
 - Real source links for Beverly tasting locations
 - Completely made-up Beverly mythology, recipes, travel protocol, and hymn
 
