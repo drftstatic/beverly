@@ -1,0 +1,758 @@
+:root {
+  --ink: #170f0d;
+  --paper: #fbf5e8;
+  --paper-deep: #efe0c3;
+  --red: #b9271f;
+  --red-deep: #651512;
+  --teal: #087a83;
+  --teal-deep: #064e54;
+  --gold: #e0a523;
+  --citrus: #f6d653;
+  --cream: #fffaf0;
+  --line: rgba(23, 15, 13, 0.16);
+  --shadow: 0 22px 60px rgba(23, 15, 13, 0.18);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at top left, rgba(224, 165, 35, 0.18), transparent 32rem),
+    linear-gradient(180deg, var(--paper) 0%, #f6ecd8 42%, #fbf5e8 100%);
+  color: var(--ink);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  line-height: 1.55;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.8rem clamp(1rem, 3vw, 2.2rem);
+  background: rgba(251, 245, 232, 0.92);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(18px);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  text-decoration: none;
+  min-width: 14rem;
+}
+
+.brand-mark {
+  display: grid;
+  place-items: center;
+  width: 2.7rem;
+  height: 2.7rem;
+  border: 2px solid var(--ink);
+  border-radius: 50%;
+  background: var(--red);
+  color: var(--cream);
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+}
+
+.brand strong,
+.brand small {
+  display: block;
+}
+
+.brand strong {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.05rem;
+  line-height: 1.1;
+}
+
+.brand small {
+  color: rgba(23, 15, 13, 0.68);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.site-nav a {
+  border-radius: 999px;
+  padding: 0.52rem 0.78rem;
+  color: rgba(23, 15, 13, 0.74);
+  font-weight: 800;
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+.site-nav a:hover,
+.site-nav a[aria-current="page"] {
+  background: var(--ink);
+  color: var(--cream);
+}
+
+.nav-toggle {
+  display: none;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--cream);
+  color: var(--ink);
+  padding: 0.55rem 0.7rem;
+  font: inherit;
+  font-weight: 900;
+}
+
+.hero {
+  position: relative;
+  min-height: clamp(34rem, 92vh, 54rem);
+  overflow: hidden;
+  display: grid;
+  align-items: center;
+}
+
+.hero img,
+.page-hero.image-hero > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-shade {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(12, 6, 5, 0.88) 0%, rgba(12, 6, 5, 0.72) 36%, rgba(12, 6, 5, 0.08) 72%),
+    linear-gradient(180deg, transparent 74%, var(--paper) 100%);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  width: min(46rem, calc(100% - 2rem));
+  margin-left: clamp(1rem, 7vw, 6rem);
+  color: var(--cream);
+  padding: 5rem 0;
+}
+
+.eyebrow,
+.kicker {
+  margin: 0 0 0.7rem;
+  color: var(--gold);
+  font-weight: 950;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.78rem;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  line-height: 1.02;
+}
+
+h1 {
+  font-size: clamp(4.4rem, 14vw, 11rem);
+}
+
+h2 {
+  font-size: clamp(2rem, 5vw, 4rem);
+}
+
+h3 {
+  font-size: clamp(1.25rem, 2vw, 1.7rem);
+}
+
+p {
+  margin: 0;
+}
+
+.hero-copy {
+  max-width: 38rem;
+  margin-top: 1rem;
+  color: rgba(255, 250, 240, 0.9);
+  font-size: clamp(1.08rem, 2vw, 1.4rem);
+}
+
+.hero-actions {
+  display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  margin-top: 1.8rem;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.85rem;
+  border: 2px solid currentColor;
+  border-radius: 6px;
+  padding: 0.76rem 1rem;
+  font-weight: 950;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 160ms ease, background 160ms ease, color 160ms ease;
+}
+
+.button:hover {
+  transform: translateY(-1px);
+}
+
+.button.primary {
+  background: var(--citrus);
+  color: var(--ink);
+}
+
+.button.ghost {
+  background: rgba(255, 250, 240, 0.08);
+  color: var(--cream);
+}
+
+.section {
+  width: min(1180px, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: clamp(3.5rem, 8vw, 7rem) 0;
+}
+
+.intro-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(18rem, 26rem);
+  gap: clamp(1.2rem, 4vw, 4rem);
+  align-items: center;
+}
+
+.intro-grid p:not(.kicker),
+.dossier-intro p,
+.proclamation-band p,
+.ceremony-panel p,
+.travel-card p,
+.tsa-box p,
+.source-card p,
+.recipe-card p,
+.location-card p,
+.page-hero p,
+.hymn-console p,
+.lyrics-card p {
+  color: rgba(23, 15, 13, 0.74);
+  font-size: 1.02rem;
+}
+
+.fact-panel,
+.sip-console,
+.hymn-console,
+.lyrics-card,
+.source-card,
+.recipe-card,
+.location-card,
+.travel-card,
+.dossier-card {
+  background: rgba(255, 250, 240, 0.86);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+}
+
+.fact-panel {
+  padding: 1.35rem;
+}
+
+.fact-panel h3 {
+  margin-bottom: 1rem;
+}
+
+.fact-panel dl {
+  display: grid;
+  gap: 0.85rem;
+  margin: 0;
+}
+
+.fact-panel div {
+  border-top: 1px solid var(--line);
+  padding-top: 0.8rem;
+}
+
+.fact-panel dt {
+  color: var(--red);
+  font-weight: 950;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+}
+
+.fact-panel dd {
+  margin: 0.15rem 0 0;
+  font-weight: 800;
+}
+
+.proclamation-band {
+  display: grid;
+  grid-template-columns: 1fr 0.8fr;
+  gap: clamp(1.4rem, 5vw, 5rem);
+  align-items: end;
+  border-top: 3px solid var(--ink);
+  border-bottom: 3px solid var(--ink);
+}
+
+.cards-section {
+  width: 100%;
+  background:
+    linear-gradient(135deg, rgba(8, 122, 131, 0.18), transparent 42%),
+    var(--red-deep);
+  color: var(--cream);
+  padding-left: max(1rem, calc((100% - 1180px) / 2));
+  padding-right: max(1rem, calc((100% - 1180px) / 2));
+}
+
+.section-heading {
+  margin-bottom: 1.4rem;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.feature-card {
+  min-height: 16rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  padding: 1.2rem;
+  color: var(--cream);
+  border: 1px solid rgba(255, 250, 240, 0.2);
+  border-radius: 8px;
+  background: rgba(255, 250, 240, 0.08);
+  text-decoration: none;
+}
+
+.feature-card:hover {
+  background: rgba(255, 250, 240, 0.14);
+}
+
+.feature-card p {
+  color: rgba(255, 250, 240, 0.78);
+}
+
+.card-number,
+.state,
+.recipe-meta,
+.stamp,
+.dossier-card span {
+  color: var(--gold);
+  font-weight: 950;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.75rem;
+}
+
+.ceremony-panel {
+  display: grid;
+  grid-template-columns: 1fr minmax(18rem, 28rem);
+  gap: clamp(1.4rem, 5vw, 4rem);
+  align-items: center;
+}
+
+.sip-console {
+  padding: 1.2rem;
+}
+
+.meter-shell {
+  height: 1.1rem;
+  overflow: hidden;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  background: var(--paper-deep);
+}
+
+.meter-fill {
+  display: block;
+  width: 0;
+  height: 100%;
+  background: linear-gradient(90deg, var(--teal), var(--gold), var(--red));
+  transition: width 240ms ease;
+}
+
+.sip-score {
+  margin-top: 1rem;
+  font-weight: 950;
+}
+
+.sip-message {
+  min-height: 3rem;
+  margin: 0.45rem 0 1rem;
+}
+
+.page-hero {
+  position: relative;
+  display: grid;
+  align-items: end;
+  min-height: 28rem;
+  padding: clamp(5rem, 12vw, 10rem) max(1rem, calc((100% - 1180px) / 2)) clamp(3rem, 8vw, 6rem);
+  overflow: hidden;
+  background:
+    linear-gradient(135deg, var(--red-deep), var(--teal-deep));
+  color: var(--cream);
+}
+
+.page-hero.compact-hero {
+  min-height: 24rem;
+}
+
+.page-hero.image-hero {
+  min-height: 34rem;
+}
+
+.page-hero.image-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(90deg, rgba(23, 15, 13, 0.82), rgba(23, 15, 13, 0.38) 54%, rgba(23, 15, 13, 0.08)),
+    linear-gradient(180deg, transparent 72%, var(--paper) 100%);
+}
+
+.page-hero > div {
+  position: relative;
+  z-index: 2;
+  max-width: 49rem;
+}
+
+.page-hero h1 {
+  margin-bottom: 1rem;
+  font-size: clamp(3.1rem, 9vw, 7rem);
+}
+
+.page-hero p {
+  color: rgba(255, 250, 240, 0.88);
+  font-size: clamp(1.05rem, 2vw, 1.3rem);
+}
+
+.dossier-layout {
+  display: grid;
+  grid-template-columns: minmax(18rem, 28rem) minmax(0, 1fr);
+  gap: clamp(1.2rem, 4vw, 3rem);
+  align-items: start;
+}
+
+.dossier-intro {
+  position: sticky;
+  top: 6rem;
+}
+
+.dossier-stack {
+  display: grid;
+  gap: 1rem;
+}
+
+.dossier-card {
+  padding: 1.15rem;
+}
+
+.dossier-card h3 {
+  margin: 0.25rem 0 0.5rem;
+}
+
+.pull-quote {
+  width: min(980px, calc(100% - 2rem));
+  border-left: 0.55rem solid var(--red);
+  padding-left: clamp(1rem, 4vw, 2rem);
+}
+
+.pull-quote p {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(2rem, 5vw, 4rem);
+  line-height: 1.08;
+}
+
+.pull-quote span {
+  display: block;
+  margin-top: 1rem;
+  color: rgba(23, 15, 13, 0.62);
+  font-weight: 900;
+}
+
+.location-grid,
+.recipe-grid,
+.travel-grid,
+.source-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.location-card,
+.recipe-card,
+.travel-card,
+.source-card {
+  padding: 1.2rem;
+}
+
+.location-card h2,
+.recipe-card h2,
+.travel-card h2,
+.source-card h2 {
+  margin: 0.25rem 0 0.7rem;
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+}
+
+.location-card a,
+.source-card a,
+.tsa-box a {
+  display: inline-flex;
+  margin-top: 1rem;
+  color: var(--teal-deep);
+  font-weight: 950;
+}
+
+.pilgrimage-steps {
+  border-top: 3px solid var(--ink);
+}
+
+.step-list {
+  display: grid;
+  gap: 0.8rem;
+  margin: 0;
+  padding-left: 1.3rem;
+  font-size: 1.1rem;
+}
+
+.recipe-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.recipe-card ul {
+  margin: 1rem 0 0;
+  padding-left: 1.1rem;
+  color: rgba(23, 15, 13, 0.72);
+}
+
+.travel-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.travel-card {
+  min-height: 21rem;
+}
+
+.warning-card {
+  background: #fff2bc;
+}
+
+.danger-card {
+  background: #f3d7d1;
+}
+
+.tsa-box {
+  display: grid;
+  grid-template-columns: 0.85fr 1fr;
+  gap: clamp(1rem, 4vw, 3rem);
+  border-top: 3px solid var(--ink);
+  border-bottom: 3px solid var(--ink);
+}
+
+.song-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(18rem, 28rem);
+  gap: 1rem;
+  align-items: start;
+}
+
+.lyrics-card,
+.hymn-console {
+  padding: 1.25rem;
+}
+
+.lyrics {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1.2rem;
+}
+
+.lyrics p {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+  line-height: 1.34;
+}
+
+.hymn-console {
+  position: sticky;
+  top: 6rem;
+}
+
+.hymn-console .button {
+  margin-top: 1rem;
+}
+
+.hymn-status {
+  min-height: 2rem;
+  margin-top: 0.9rem;
+  font-weight: 900;
+}
+
+.site-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 2rem clamp(1rem, 3vw, 2.2rem);
+  background: var(--ink);
+  color: var(--cream);
+}
+
+.site-footer p {
+  max-width: 58rem;
+  margin-top: 0.35rem;
+  color: rgba(255, 250, 240, 0.74);
+}
+
+.site-footer a {
+  color: var(--citrus);
+  font-weight: 950;
+}
+
+@media (max-width: 980px) {
+  .card-grid,
+  .recipe-grid,
+  .travel-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .intro-grid,
+  .proclamation-band,
+  .ceremony-panel,
+  .dossier-layout,
+  .song-layout,
+  .tsa-box {
+    grid-template-columns: 1fr;
+  }
+
+  .dossier-intro,
+  .hymn-console {
+    position: static;
+  }
+}
+
+@media (max-width: 760px) {
+  .site-header {
+    align-items: flex-start;
+  }
+
+  .brand {
+    min-width: 0;
+  }
+
+  .nav-toggle {
+    display: inline-flex;
+  }
+
+  .site-nav {
+    position: absolute;
+    top: calc(100% + 1px);
+    left: 0;
+    right: 0;
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0.8rem 1rem 1rem;
+    background: rgba(251, 245, 232, 0.98);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .site-nav.is-open {
+    display: flex;
+  }
+
+  .site-nav a {
+    border-radius: 6px;
+  }
+
+  .hero {
+    min-height: 46rem;
+    align-items: end;
+  }
+
+  .hero img {
+    object-position: 62% center;
+  }
+
+  .hero-shade {
+    background:
+      linear-gradient(180deg, rgba(12, 6, 5, 0.12) 0%, rgba(12, 6, 5, 0.82) 48%, rgba(12, 6, 5, 0.94) 84%, var(--paper) 100%);
+  }
+
+  .hero-content {
+    width: calc(100% - 2rem);
+    margin: 0 auto;
+    padding-bottom: 5rem;
+  }
+
+  h1 {
+    font-size: clamp(4rem, 22vw, 6rem);
+  }
+
+  .page-hero.image-hero {
+    min-height: 38rem;
+  }
+
+  .page-hero.image-hero > img {
+    object-position: 58% center;
+  }
+
+  .location-grid,
+  .recipe-grid,
+  .travel-grid,
+  .source-grid,
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .travel-card {
+    min-height: auto;
+  }
+
+  .site-footer {
+    flex-direction: column;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
